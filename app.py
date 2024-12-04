@@ -3,15 +3,19 @@ from flask import Flask, render_template, request, redirect, url_for
 app = Flask(__name__)
 
 
-@app.route("/")
+@app.route("/") #zobrazi se uvodni stranka
+def indx():
+    return render_template("index.html")
 
 
+@app.route("/form")
+def form():
+    if request.method == "POST":
+        name = request.args.get("name") 
+        input_class = request.args.get("class")
+        message = request.args.get("message")
 
-# name = request.args.get("name") 
-# input_class = request.args.get("class")
-# message = request.args.get("message")
-
-#     return redirect(url_for("result", name=name, form_class=input_class, message=message))
+    return redirect(url_for("result", name=name, form_class=input_class, message=message))
     
 
 
